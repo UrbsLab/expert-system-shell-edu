@@ -1,0 +1,41 @@
+{
+  "questions": {
+    "temperature": "What is the patient's temperature in Farenheit?",
+    "systolic_bp": "What is the patient's systolic blood pressure?",
+    "cough": "Does the patient have a persistent cough? (yes/no)"
+  },
+
+
+  "facts": [
+    {
+      "name": "threshold",
+      "value": 100.0, 
+      "cf": 1.0,
+      "explanation": "Clinical threshold defining fever is 100 F."
+    }
+
+  ],
+
+
+  "rules": [
+    {
+      "id": "R_FEVER",
+      "conditions": [
+        {"fact1": "$temperature", "op": ">", "fact2": "$threshold"}
+      ],
+      "conclusion": ["status", "feverish"],
+      "cf": 0.9,
+      "explanation": "Temperature above clinical threshold is a fever."
+    },
+    {
+      "id": "R_FLU",
+      "conditions": [
+        {"fact1": "$status", "op": "==", "fact2": "feverish"},
+        {"fact1": "$cough", "op": "==", "fact2": "yes"}
+      ],
+      "conclusion": ["diagnosis", "influenza"],
+      "cf": 0.8,
+      "explanation": "Fever combined with a cough suggests Influenza."
+    }
+  ]
+}

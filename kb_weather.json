@@ -1,0 +1,111 @@
+{
+  "questions": {
+    "precipitation": "Is it currently precipitating? (yes/no)",
+    "windy": "Is it currently windy? (yes/no)",
+    "temperature": "What is the current temperature (in Fahrenheit)"
+  },
+
+
+  "facts": [
+    {
+      "name": "freeze_threshold",
+      "value": 0.0, 
+      "explanation": "Threshold for water freezing (in Fahrenheit)."
+    },
+    {
+      "name": "windchill_threshold",
+      "value": 77.0, 
+      "explanation": "Threshold for 'chilly' temperature with wind (in Fahrenheit)."
+    },
+    {
+      "name": "chilly_threshold",
+      "value": 65.0, 
+      "explanation": "Threshold for 'chilly' temperature even without wind (in Fahrenheit)."
+    }
+  ],
+
+
+  "rules": [
+    {
+      "id": "R_RAIN_PROTECT",
+      "conditions": [
+        {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
+        {"fact1": "$temperature", "op": ">", "fact2": "$freeze_threshold"}
+      ],
+      "conclusion": ["rain_protect", "True"],
+      "explanation": "Rain protection needed when it's raining."
+    },
+    {
+      "id": "R_SNOW_PROTECT",
+      "conditions": [
+        {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
+        {"fact1": "$temperature", "op": "<=", "fact2": "$freeze_threshold"}
+      ],
+      "conclusion": ["snow_protect", "True"],
+      "explanation": "Snow protection needed when it's snowing."
+    },
+    {
+      "id": "R_UMBRELLA",
+      "conditions": [
+        {"fact1": "$rain_protect", "op": "==", "fact2": "True"},
+        {"fact1": "$windy", "op": "!=", "fact2": "yes"}
+      ],
+      "conclusion": ["what to bring", "umbrella"],
+      "explanation": "Bring an umbrella when it's raining but not windy."
+    },
+    {
+      "id": "R_RAINCOAT",
+      "conditions": [
+        {"fact1": "$rain_protect", "op": "==", "fact2": "True"},
+        {"fact1": "$windy", "op": "==", "fact2": "yes"}
+      ],
+      "conclusion": ["what to bring", "raincoat"],
+      "explanation": "Bring raincoat when it's raining and windy."
+    },
+    {
+      "id": "R_WARMCOAT1",
+      "conditions": [
+        {"fact1": "$snow_protect", "op": "==", "fact2": "True"}
+      ],
+      "conclusion": ["what to bring", "warm coat"],
+      "explanation": "Bring warm coat when snow protection is needed."
+    },
+    {
+      "id": "R_WARMCOAT2",
+      "conditions": [
+        {"fact1": "$windy", "op": "==", "fact2": "yes"},
+        {"fact1": "$temperature", "op": "<=", "fact2": "$windchill_threshold"}
+      ],
+      "conclusion": ["what to bring", "warm coat"],
+      "explanation": "Bring warm coat when it's windy reasonably cool/cold."
+    },
+    {
+      "id": "R_WARMCOAT3",
+      "conditions": [
+        {"fact1": "$temperature", "op": "<=", "fact2": "$chilly_threshold"}
+      ],
+      "conclusion": ["what to bring", "warm coat"],
+      "explanation": "Bring warm coat when it's chilly."
+    },
+    {
+      "id": "R_NOTHING1",
+      "conditions": [
+        {"fact1": "$precipitation", "op": "==", "fact2": "no"},
+        {"fact1": "$windy", "op": "==", "fact2": "no"},
+        {"fact1": "$temperature", "op": ">", "fact2": "$windchill_threshold"}
+      ],
+      "conclusion": ["what to bring", "nothing"],
+      "explanation": "Weather conditions don't warrant bringing anything."
+    },
+    {
+      "id": "R_NOTHING2",
+      "conditions": [
+        {"fact1": "$precipitation", "op": "==", "fact2": "no"},
+        {"fact1": "$windy", "op": "==", "fact2": "no"},
+        {"fact1": "$temperature", "op": ">", "fact2": "$chilly_threshold"}
+      ],
+      "conclusion": ["what to bring", "nothing"],
+      "explanation": "Weather conditions don't warrant bringing anything."
+    }
+  ]
+}
