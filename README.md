@@ -2,7 +2,9 @@
 A prototype implementation of a new expert system (i.e. knowledge-based system) shell for developing and deploying expert systems and their paired knowlege bases.
 
 Author: Ryan J Urbanowicz, PhD
+
 Institution: Cedars Sinai Health Sciences University
+
 Developed for the 'Artificial Intelligence' course for the Health AI PhD program
 
 ## Expert System (i.e. Knowledge-Based System) Shell/Engine - Educational DEMO
