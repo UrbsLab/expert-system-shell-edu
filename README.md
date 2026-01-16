@@ -1,6 +1,10 @@
 # expert-system-shell-edu
 A prototype implementation of a new expert system (i.e. knowledge-based system) shell for developing and deploying expert systems and their paired knowlege bases.
 
+Author: Ryan J Urbanowicz, PhD
+Institution: Cedars Sinai Health Sciences University
+Developed for the 'Artificial Intelligence' course for the Health AI PhD program
+
 ## Expert System (i.e. Knowledge-Based System) Shell/Engine - Educational DEMO
 This repository includes code assembling a **basic but flexible expert system shell, built from the ground up** (i.e. without using existing expert system shells like CLIPS, clipspy, or PyKE), but certainly directly inspired by them. 
 
