@@ -27,7 +27,7 @@
 
   "rules": [
     {
-      "id": "R_RAIN_PROTECT1",
+      "id": "R_RAIN_PROTECT",
       "conditions": [
         {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
         {"fact1": "$temperature", "op": ">", "fact2": "$freeze_threshold"}
@@ -36,47 +36,13 @@
       "explanation": "Rain protection needed when it's raining."
     },
     {
-      "id": "R_RAIN_PROTECT2",
-      "conditions": [
-        {"fact1": "$precipitation", "op": "==", "fact2": "no"}
-      ],
-      "conclusion": ["rain_protect", "False"],
-      "explanation": "Rain protection isn't needed since there's no rain."
-    },
-    {
-      "id": "R_RAIN_PROTECT3",
-      "conditions": [
-        {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
-        {"fact1": "$temperature", "op": "<=", "fact2": "$freeze_threshold"}
-      ],
-      "conclusion": ["rain_protect", "False"],
-      "explanation": "Rain protection isn't needed since there's no rain."
-    },
-    {
-      "id": "R_SNOW_PROTECT1",
+      "id": "R_SNOW_PROTECT",
       "conditions": [
         {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
         {"fact1": "$temperature", "op": "<=", "fact2": "$freeze_threshold"}
       ],
       "conclusion": ["snow_protect", "True"],
       "explanation": "Snow protection needed when it's snowing."
-    },
-    {
-      "id": "R_SNOW_PROTECT2",
-      "conditions": [
-        {"fact1": "$precipitation", "op": "==", "fact2": "no"}
-      ],
-      "conclusion": ["snow_protect", "False"],
-      "explanation": "Snow protection isn't needed since there's no snow."
-    },
-    {
-      "id": "R_SNOW_PROTECT3",
-      "conditions": [
-        {"fact1": "$precipitation", "op": "==", "fact2": "yes"},
-        {"fact1": "$temperature", "op": ">", "fact2": "$freeze_threshold"}
-      ],
-      "conclusion": ["snow_protect", "False"],
-      "explanation": "Snow protection isn't needed since there's no snow."
     },
     {
       "id": "R_UMBRELLA",
@@ -125,11 +91,11 @@
       "id": "R_NOTHING1",
       "conditions": [
         {"fact1": "$precipitation", "op": "==", "fact2": "no"},
-        {"fact1": "$windy", "op": "==", "fact2": "yes"},
+        {"fact1": "$windy", "op": "==", "fact2": "no"},
         {"fact1": "$temperature", "op": ">", "fact2": "$windchill_threshold"}
       ],
       "conclusion": ["what to bring", "nothing"],
-      "explanation": "Not precipitating or chilly so don't warrant bringing anything."
+      "explanation": "Weather conditions don't warrant bringing anything."
     },
     {
       "id": "R_NOTHING2",

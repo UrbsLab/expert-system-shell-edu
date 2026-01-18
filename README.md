@@ -12,7 +12,7 @@ This repository includes code assembling a **basic but flexible expert system sh
 
 This expert system shell is primarily intended for educational purposes. While it is a realtively simple implementation it has been designed with a good deal of flexibility - not found in other Python or Java expert system implementations which are often confusing, not well documented, and or no longer supported/used often. This shell can be used to create a fairly wide varity of expert and knowledge-based system decision making/reasoning tools. Here is a summary of the key features of this shell impelemntation. 
 1. Handles both **deductive** (certain) and **inductive** (uncertain/probabilistic) **reasoning**
-2. Can perform both **forward** and **backward chaining** (i.e. reasoning)
+2. Can perform both **forward**, **backward**, and **hybrid chaining** (i.e. reasoning)
 3. Separates the knowledge base (saved as a json file) from the inference engine and other components (a simple knowlege base editor and a simple explanation system)
 4. Uses an easy-to-understand and simple syntax for facts, rules, and questions in the knoweldge-base (however potentially limiting for some applications)
 5. Flexibly handles truth comparisons including **(==, >, <, <=, >=,!=)** and fact-states such as True/False, yes/no, etc. 
